@@ -2,7 +2,7 @@
 Public Class FormMahasiswa
     Sub TampilGrid()
         Call Koneksi()
-        DA = New SqlDataAdapter("select Nama as Name, Nim as NIM, Kelas as Kelass, TmpLhr as tmpt, TglLhr as tgl, Alamat as Adress , Agama as religion, No_Hp as nohp, Email as imel From TBL_DATA_MHS_2", CONN)
+        DA = New SqlDataAdapter("select Nama as Nama, Nim as NIM, Kelas as Kelas, TmpLhr as TempatLahir, TglLhr as TanggalLahir, Alamat as Alamat , Agama as Agama, No_Hp as No_Hp, Email as Email From TBL_DATA_MHS_2", CONN)
         DS = New DataSet
         DA.Fill(DS, "TBL_DATA_MHS_2")
         DataGridView1.DataSource = DS.Tables("TBL_DATA_MHS_2")
@@ -61,8 +61,12 @@ Public Class FormMahasiswa
         Else
             Call Koneksi()
             Dim tanggal As String = txtTahun.Text & "-" & txtBulan.Text & "-" & txtHari.Text
+            Dim zero As String = "0"
             Dim simpan As String = "insert into TBL_DATA_MHS_2 values ('" & txtNama.Text & "','" & txtNIM.Text & "','" & txtKelas.Text & "','" & txtTmptLhr.Text & "','" & tanggal & "','" & txtAlamat.Text & "','" & txtAgama.Text & "','" & txtNo_hp.Text & "','" & txtEmail.Text & "')"
+            Dim simpan_nilai As String = "insert into TBL_NILAI_MHS values ('" & txtNama.Text & "','" & zero & "','" & zero & "','" & zero & "','" & zero & "','" & zero & "','" & zero & "')"
             CMD = New SqlCommand(simpan, CONN)
+            CMD.ExecuteNonQuery()
+            CMD = New SqlCommand(simpan_nilai, CONN)
             CMD.ExecuteNonQuery()
             MsgBox("Data berhasil di Input", MsgBoxStyle.Information, "Information")
             Call TampilGrid()
@@ -78,7 +82,7 @@ Public Class FormMahasiswa
         Call Koneksi()
         Dim tanggal As String
         Dim i As Integer
-        Dim arraytangggal(0 To 2) As String
+        Dim arraytanggal(0 To 2) As String
         i = DataGridView1.CurrentRow.Index
         CMD = New SqlCommand("Select * from TBL_DATA_MHS_2 where Nama='" & DataGridView1.Item(0, i).Value & "'", CONN)
         RD = CMD.ExecuteReader
@@ -91,12 +95,13 @@ Public Class FormMahasiswa
             txtKelas.Text = RD.Item("Kelas")
             txtTmptLhr.Text = RD.Item("TmpLhr")
             tanggal = RD.Item("TglLhr")
-            arraytangggal = Split(tanggal, "-")
-            txtHari.Text = arraytangggal(2)
-            txtBulan.Text = arraytangggal(1)
-            txtTahun.Text = arraytangggal(0)
+            arraytanggal = Split(tanggal, "/")
+            txtHari.Text = arraytanggal(0)
+            txtBulan.Text = arraytanggal(1)
+            txtTahun.Text = arraytanggal(2)
             txtAlamat.Text = RD.Item("Alamat")
-            txtAgama.Text = RD.Item("No_Hp")
+            txtAgama.Text = RD.Item("Agama")
+            txtNo_hp.Text = RD.Item("No_Hp")
             txtEmail.Text = RD.Item("Email")
             txtNama.Focus()
         End If
@@ -109,7 +114,11 @@ Public Class FormMahasiswa
         Else
             Call Koneksi()
             Dim tanggal As String = txtTahun.Text & "-" & txtBulan.Text & "-" & txtHari.Text
+            Dim zero As String = "0"
             Dim edit As String = "update TBL_DATA_MHS_2 set Nim='" & txtNIM.Text & "',Kelas='" & txtKelas.Text & "',TmpLhr='" & txtTmptLhr.Text & "',TglLhr='" & tanggal & "',Alamat='" & txtAlamat.Text & "',Agama='" & txtAgama.Text & "',No_Hp='" & txtNo_hp.Text & "',Email='" & txtEmail.Text & "' where Nama='" & txtNama.Text & "'"
+            Dim edit_nilai As String = "update TBL_NILAI_MHS SET Nama='" & txtNama.Text & "'"
+            CMD = New SqlCommand(edit_nilai, CONN)
+            CMD.ExecuteNonQuery()
             CMD = New SqlCommand(edit, CONN)
             CMD.ExecuteNonQuery()
             MsgBox("Data berhasil di Edit", MsgBoxStyle.Information, "Information")
@@ -124,7 +133,10 @@ Public Class FormMahasiswa
         Else
             Call Koneksi()
             Dim hapus As String = "delete from TBL_DATA_MHS_2 where Nama='" & txtNama.Text & "'"
+            Dim hapus_nilai As String = "delete from TBL_NILAI_MHS where Nama='" & txtNama.Text & "'"
             CMD = New SqlCommand(hapus, CONN)
+            CMD.ExecuteNonQuery()
+            CMD = New SqlCommand(hapus_nilai, CONN)
             CMD.ExecuteNonQuery()
             MsgBox("Data berhasil di Hapus", MsgBoxStyle.Information, "Information")
             Call TampilGrid()

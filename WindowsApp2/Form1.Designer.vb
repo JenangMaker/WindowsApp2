@@ -86,25 +86,25 @@ Partial Class Form1
         'AdminToolStripMenuItem
         '
         Me.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem"
-        Me.AdminToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AdminToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.AdminToolStripMenuItem.Text = "Admin"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(129, 6)
         '
         'PelangganToolStripMenuItem
         '
         Me.PelangganToolStripMenuItem.Name = "PelangganToolStripMenuItem"
-        Me.PelangganToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PelangganToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.PelangganToolStripMenuItem.Text = "Mahasiswa"
         '
         'BarangToolStripMenuItem
         '
         Me.BarangToolStripMenuItem.Name = "BarangToolStripMenuItem"
-        Me.BarangToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.BarangToolStripMenuItem.Text = "Barang"
+        Me.BarangToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.BarangToolStripMenuItem.Text = "Nilai"
         '
         'TransaksiToolStripMenuItem
         '

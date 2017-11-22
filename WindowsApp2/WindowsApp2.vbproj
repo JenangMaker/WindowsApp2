@@ -97,6 +97,12 @@
     <Compile Include="FormMasterAdmin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormNilaiMhs.Designer.vb">
+      <DependentUpon>FormNilaiMhs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormNilaiMhs.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterAdmin.resx">
       <DependentUpon>FormMasterAdmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNilaiMhs.resx">
+      <DependentUpon>FormNilaiMhs.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
